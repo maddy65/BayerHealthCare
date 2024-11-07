@@ -23,14 +23,14 @@ Follow the steps below to set up the project locally.
 Prerequisites
 
     Docker and Docker Compose installed on your local machine.
-    Node.js (for building the frontend if needed).
+    Node.js .
     Git for version control.
 
 Cloning the Repository
 
     Clone the repository to your local machine:
 
-    git clone https://github.com/yourusername/BayerHealthCare.git
+    git clone https://github.com/BayerHealthCare.git
     cd healthcare-microservices
 
 Backend Setup (HealthCareService)
@@ -43,7 +43,7 @@ Install dependencies (if not using Docker for backend development):
 
     npm install
 
-    Set up MongoDB connection (optional if using Docker for MongoDB):
+    Set up MongoDB connection:
         Configure MongoDB URI in your .env file or through environment variables.
 
 Frontend Setup
