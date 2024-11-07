@@ -27,13 +27,13 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies and run tests for ${{ matrix.service }}
-        working-directory: ./backend/${{ matrix.service }}
+        working-directory: ./back-end/${{ matrix.service }}
         run: |
           npm install
           npm test
 
       - name: Build Docker image for ${{ matrix.service }}
-        working-directory: ./backend/${{ matrix.service }}
+        working-directory: ./back-end/${{ matrix.service }}
         run: |
           docker build -t ${{ matrix.service }} .
 
