@@ -17,7 +17,7 @@ const paperStyle={padding :20,height:'55vh',width:280, margin:"20px auto"}
     const btnstyle={margin:'8px 0', backgroundColor: '#8BC53F', color: "#fff"}
     const mrSpace={margin: '10px 0'}
 
-function App() {
+function Login() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -66,4 +66,4 @@ function App() {
         </Grid>
   );
 }
-export default App;
+export default Login;
