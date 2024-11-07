@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {  Modal } from '@material-ui/core';
+import { Modal } from "@material-ui/core";
 import "./main.css";
-import Login from './Login';
+import Login from "./Login";
 
 export default function Landing() {
   const [open, setOpen] = useState(false);
@@ -40,79 +40,79 @@ export default function Landing() {
           Healthcare
         </h5>
       </div>
-      <div className="banner-container">
-        <h3 className="text-F">Featured Health Topics</h3>
-        <div className="banner-bar">
-          <div className="cont-one">
+      <div className="container">
+        <h2>Featured Health Topics</h2>
+        <div class="flex-container">
+          <div>
             <h2 className="header-text">COVID-19 Updates</h2>
             <p>
               Stay informed about the latest COVID-19 guidelines and vaccination
               information.
             </p>
             <button className="btn-header">
-              <a href="##">Learn More</a>
+            Learn More
             </button>
           </div>
-          <div className="cont-one">
-            <h2 className="header-text">COVID-19 Updates</h2>
+          <div>
+            <h2 className="header-text">Heart Health</h2>
             <p>
-              Stay informed about the latest COVID-19 guidelines and vaccination
-              information.
+              Discover tips and information for maintaining a healthy heart and
+              cardiovascular system.
             </p>
             <button className="btn-header">
-              <a href="##">Learn More</a>
+             Learn More
             </button>
           </div>
-          <div className="cont-one">
-            <h2 className="header-text">COVID-19 Updates</h2>
+          <div>
+            {" "}
+            <h2 className="header-text">Mental Wellness</h2>
             <p>
-              Stay informed about the latest COVID-19 guidelines and vaccination
-              information.
+              Explore resources and support options for maintaining good mental
+              health.
             </p>
             <button className="btn-header">
-              <a href="##">Learn More</a>
+            Learn More
             </button>
           </div>
-          <div className="cont-one">
-            <h2 className="header-text">COVID-19 Updates</h2>
+          <div>
+            {" "}
+            <h2 className="header-text">Nutrition & Diet</h2>
             <p>
-              Stay informed about the latest COVID-19 guidelines and vaccination
-              information.
+              Learn about balanced nutrition and healthy eating habits for
+              overall wellbeing.
             </p>
             <button className="btn-header">
-              <a href="##">Learn More</a>
+            Learn More
             </button>
           </div>
         </div>
-      </div>
-
-<div className="banner-container-one">
-
-        <div className="banner-bar-one">
-        <h3 className="text-F">Featured Health Topics</h3>
-          <div className="cont-one-one">
-            <h2 className="header-text-one">Bayer Launches New Initiative for Preventive Healthcare</h2>
+        {/*  */}
+        <h2>Latest Health News</h2>
+        <div class="flex-container-one">
+          <div>
+            <h2>Bayer Launches New Initiative for Preventive Healthcare</h2>
             <p>
-              Stay informed about the latest COVID-19 guidelines and vaccination
-              information.
+              Our new program aims to promote regular health check-ups and early
+              disease detection.
             </p>
             <button className="btn-header-one">
-              <a href="##">Read Full Article</a>
+            Read Full Article
+            </button>
+          </div>
+          <div>
+            <h2>Bayer Launches New Initiative for Preventive Healthcare</h2>
+            <p>
+              Our new program aims to promote regular health check-ups and early
+              disease detection.
+            </p>
+            <button className="btn-header-one">
+            Read Full Article
             </button>
           </div>
        
-          <div className="cont-one-one-two">
-            <h2 className="header-text-one">Bayer Launches New Initiative for Preventive Healthcare</h2>
-            <p>
-              Stay informed about the latest COVID-19 guidelines and vaccination
-              information.
-            </p>
-            <button className="btn-header-one">
-            <a href="##">Read Full Article</a>
-            </button>
-          </div>
         </div>
       </div>
+
       <Modal
         open={open}
         onClose={handleClose}

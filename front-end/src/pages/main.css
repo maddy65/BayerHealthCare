@@ -3,14 +3,32 @@
     padding: 0px;
   }
   body{
-      margin: 0px;
-      padding: 0px;
+    
       font-family: Arial, Helvetica, sans-serif;
   }
   /* .container{
   max-width: 1200px;
   } */
   
+  .container{
+    background-color: #f4f4f4;
+ 
+  }
+
+  .btn-header-one {
+    background-color:#8bc63f;
+ 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+   
+    display: inline-block;
+    margin-top: -19px;
+    margin-right: 263px;
+    width: 11%;
+  }
+
   .header-part {
     width: 100%;
     height: 300px;
@@ -36,6 +54,7 @@
     color: white;
     margin-top: 10px;
     text-align: center;
+    
   }
   .menu-bar {
     display: flex;
@@ -65,7 +84,7 @@
   }
   .cont-one {
     width: 24%;
-    height: 200px;
+    height: 225px;
     background-color: white;
     border-radius: 10px;
   }
@@ -106,6 +125,7 @@
       margin: 20px 0;  /* Add top and bottom margin */
       padding: 10px;  /* Add padding around the paragraph */
       text-align: justify;  /* Justify text for a clean, even look */
+      word-wrap: break-word;
   }
   .bottom-bar{
       background-color: #f4f4f4;
@@ -146,18 +166,7 @@
       left: 22px;
       border-radius: 10px;
   }
-  .btn-header-one{
-      background-color:#8bc63f;
-      color: var(--white);
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: -19px;
-      margin-right: 89%;
-  }
+
   .header-text-one{
     position: relative;
     left: 1%;
@@ -172,4 +181,31 @@
       margin-top: 20px;
       border-radius: 10px;
     
+  }
+
+  .flex-container {
+    display: flex;
+    /* margin: 1rem; */
+   
+  }
+  
+  .flex-container > div {
+    background-color: #fafafa;
+    margin: 10px;
+    padding: 20px;
+    font-size: 12px;
+    width:20%;
+    border-radius: 10px;
+  }
+  .flex-container-one{
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-container-one > div {
+    background-color: #fafafa;
+    margin: 10px;
+    padding: 20px;
+    font-size: 12px;
+    width:93%;
+    border-radius: 10px;
   }
