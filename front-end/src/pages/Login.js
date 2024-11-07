@@ -20,7 +20,7 @@ const paperStyle={padding :20,height:'55vh',width:280, margin:"20px auto"}
 function Login() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
-
+  
   const handleNameChange = e => {
     setName(e.target.value);
     if (e.target.validity.valid) {

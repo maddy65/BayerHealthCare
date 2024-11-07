@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import {  Modal } from '@material-ui/core';
 import "./main.css";
+import Login from './Login';
 
 export default function Landing() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <div className="header-part">
@@ -24,7 +30,7 @@ export default function Landing() {
               <a href="##">Contact</a>
             </li>
             <li>
-              <a href="/login">Log In</a>
+              <a onClick={handleOpen}>Log In</a>
             </li>
           </ul>
         </div>
@@ -107,6 +113,14 @@ export default function Landing() {
           </div>
         </div>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Login />
+      </Modal>
     </>
   );
 }
