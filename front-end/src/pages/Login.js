@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Paper, TextField, Button, Typography, Link } from '@material-ui/core';
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: 'absolute',
@@ -20,6 +21,7 @@ const paperStyle={padding :20,height:'55vh',width:280, margin:"20px auto"}
 function Login() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
+  let navigate = useNavigate(); 
   
   const handleNameChange = e => {
     setName(e.target.value);
@@ -29,6 +31,11 @@ function Login() {
       setNameError(true);
     }
   };
+
+  const loginHandler = () => {
+    let path = `/profile`; 
+    navigate(path);
+  }
 
   return (
     <Grid sx={style}>
@@ -55,7 +62,7 @@ function Login() {
                   fullWidth
                 />
                 <TextField style={mrSpace} label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required/>
-                <Button type='submit' variant="outlined outlinedSuccess" style={btnstyle} fullWidth>Login</Button>
+                <Button type='submit' variant="outlined outlinedSuccess" style={btnstyle} fullWidth onClick={loginHandler}>Login</Button>
                 <Typography >
                      <Link href="#" style={headColors}>Forgot password ?</Link>
                 </Typography>
