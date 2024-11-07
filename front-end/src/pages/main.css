@@ -12,6 +12,7 @@
   
   .container{
     background-color: #f4f4f4;
+    width: 100%;
  
   }
 
@@ -186,6 +187,7 @@
   .flex-container {
     display: flex;
     /* margin: 1rem; */
+    padding: 25px 10px;
    
   }
   
@@ -200,12 +202,22 @@
   .flex-container-one{
     display: flex;
     flex-direction: column;
+    padding: 25px 10px;
   }
   .flex-container-one > div {
     background-color: #fafafa;
     margin: 10px;
     padding: 20px;
+    background-color: #fafafa;
+    margin: 15px;
+    padding: 10px;
     font-size: 12px;
-    width:93%;
+    width: 95%;
     border-radius: 10px;
+  }
+  h2{
+    display: flex;
+    /* margin: 10px 10px; */
+    padding: 10px 10px;
+    justify-content: flex-start;
   }
