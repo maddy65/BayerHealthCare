@@ -3,7 +3,7 @@ name: Full Stack CI/CD Workflow
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
       - main
