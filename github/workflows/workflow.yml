@@ -1,0 +1,110 @@
+name: Full Stack CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Job to build and test backend services
+  backend:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        service: [HealthCareService, auth-service, user-service]  # Backend services
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies and run tests for ${{ matrix.service }}
+        working-directory: ./backend/${{ matrix.service }}
+        run: |
+          npm install
+          npm test
+
+      - name: Build Docker image for ${{ matrix.service }}
+        working-directory: ./backend/${{ matrix.service }}
+        run: |
+          docker build -t ${{ matrix.service }} .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag Docker image for ECR
+        run: |
+          IMAGE_URI="${{ steps.ecr-login.outputs.registry }}/${{ matrix.service }}:latest"
+          docker tag ${{ matrix.service }} $IMAGE_URI
+        env:
+          IMAGE_URI: ${{ steps.ecr-login.outputs.registry }}/${{ matrix.service }}:latest
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push $IMAGE_URI
+        env:
+          IMAGE_URI: ${{ steps.ecr-login.outputs.registry }}/${{ matrix.service }}:latest
+
+  # Job to build and deploy the frontend
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js for frontend
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install frontend dependencies and build
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+
+      - name: Sync build files to S3
+        run: |
+          aws s3 sync ./frontend/build s3://your-s3-bucket-name --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-southeast-2
+
+  # Job to deploy backend services to ECS
+  deploy-backend:
+    needs: backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+
+      - name: Register task definition for ${{ matrix.service }}
+        run: |
+          aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service --cluster your-cluster-name --service ${{ matrix.service }} --force-new-deployment

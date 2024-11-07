@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"   # Adjust if your frontend uses a different port
+    depends_on:
+      - healthcareservice
+      - auth-service
+      - user-service
+
+  # Backend: HealthCareService
+  healthcareservice:
+    build:
+      context: ./backend/HealthCareService
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"  # Adjust port if needed
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/healthcare-db  # MongoDB connection URL (adjust if using different DB)
+    depends_on:
+      - mongo
+
+  # Backend: service-2
+  service-2:
+    build:
+      context: ./backend/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"  # Adjust port if needed
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/service-2-db
+    depends_on:
+      - mongo
+
+  # Backend: service-3
+  service-3:
+    build:
+      context: ./backend/user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"  # Adjust port if needed
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/service-3-db
+    depends_on:
+      - mongo
+
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"  # Exposing the MongoDB port
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+    restart: always
+
+volumes:
+  mongo-data:
+    driver: local

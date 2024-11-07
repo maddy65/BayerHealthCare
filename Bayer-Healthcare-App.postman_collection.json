@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "0543c511-a15f-4908-9064-bcf10762d6b6",
+		"name": "Bayer-Healthcare-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38658788",
+		"_collection_link": "https://savvly-6801.postman.co/workspace/savvly-Workspace~3aafc8fe-cc71-4176-af8b-4e73a164c1ea/collection/38658788-0543c511-a15f-4908-9064-bcf10762d6b6?action=share&source=collection_link&creator=38658788"
+	},
+	"item": [
+		{
+			"name": "Register-User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Iqbal\",\n    \"lastName\": \"Ahmed\",\n    \"email\": \"iqbal9119@gmail.com\",\n    \"password\": \"Password1!\",\n    \"user_type\": \"PATIENT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/register",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"iqbal9119@gmail.com\",\n    \"password\": \"Password1!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/login",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Notify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patient_id\": 123123,\n    \"notifications\": [\n        {\n            \"type\": \"SMS\",\n            \"contact_number\": \"+919999999999\"\n        },\n        {\n            \"type\": \"EMAIL\",\n            \"email_address\": \"iqbal9119@gmail.com\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/notify",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"notify"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
