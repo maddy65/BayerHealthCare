@@ -1,4 +1,4 @@
-HealthCare Microservices Project
+Bayer Project
 
 This project is a microservices-based full-stack application for the healthcare domain, specifically designed to manage healthcare services like appointment scheduling, doctor details, and more. The backend consists of multiple services, including an appointment service (HealthCareService), and the frontend is built with React to provide a user-friendly interface.
 Project Structure
@@ -15,7 +15,7 @@ The project consists of the following components:
         GitHub Actions workflows for automating build, test, and deployment processes.
 
     Database:
-        MongoDB (or DynamoDB) for persistent data storage.
+        MongoDB for persistent data storage.
 
 Getting Started
 
@@ -30,7 +30,7 @@ Cloning the Repository
 
     Clone the repository to your local machine:
 
-    git clone https://github.com/yourusername/healthcare-microservices.git
+    git clone https://github.com/yourusername/BayerHealthCare.git
     cd healthcare-microservices
 
 Backend Setup (HealthCareService)
